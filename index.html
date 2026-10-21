@@ -13,6 +13,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0e100f" media="(prefers-color-scheme: dark)">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P8J55CEYN4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P8J55CEYN4');
+</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
 /* 한 줄 글 흐름. 글은 좁게, 사진은 넓게. 검정 글자 위에 초록은 링크에만 */
@@ -22,11 +29,13 @@
   --muted: #6a706c;
   --line: #e6e9e7;
   --accent: #17734a;
+  --on-accent: #ffffff;
+  --soft: #f1f5f2;
   --font: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
-  :root { --bg: #0e100f; --ink: #e9ece9; --muted: #9aa29d; --line: #232825; --accent: #5cc28d; color-scheme: dark; }
+  :root { --bg: #0e100f; --ink: #e9ece9; --muted: #9aa29d; --line: #232825; --accent: #5cc28d; --on-accent: #0e100f; --soft: #161b18; color-scheme: dark; }
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -84,6 +93,21 @@ footer.end { padding-block: 32px 56px; border-top: 1px solid var(--line); displa
 .links a:hover { border-color: var(--accent); }
 .links small { display: block; color: var(--muted); font-size: 14px; }
 .sign { color: var(--muted); font-size: 15px; }
+.note { color: var(--muted); font-size: 13px; }
+
+.signup {
+  margin-block: 8px 32px; padding: 24px 20px; border-radius: 14px;
+  background: var(--soft); display: flex; flex-direction: column; gap: 12px;
+}
+.signup h2 { margin: 0; font-size: 21px; line-height: 1.4; letter-spacing: -0.02em; }
+.signup p { margin: 0; font-size: 16px; }
+.signup .cta {
+  align-self: flex-start; display: inline-block; margin-top: 4px;
+  background: var(--accent); color: var(--on-accent); text-decoration: none;
+  font-weight: 600; font-size: 16px; padding: 12px 20px; border-radius: 10px;
+}
+.signup .cta:hover { filter: brightness(1.08); }
+.signup small { color: var(--muted); font-size: 13px; }
 </style>
 </head>
 <body>
@@ -174,6 +198,13 @@ footer.end { padding-block: 32px 56px; border-top: 1px solid var(--line); displa
     </section>
   </article>
 
+  <section class="signup" id="signup">
+    <h2>다음 자리 소식 받기</h2>
+    <p>박사님 강연이나 아이와 함께하는 영어 모임을 다시 열면, 문자로 가장 먼저 알려 드릴게요.</p>
+    <a class="cta" id="signup-link" href="https://docs.google.com/forms/d/1ZjOmrpa5A3wcXNDjLOO0dNw9tIzWg17z46dsW9NHydE/viewform" target="_blank" rel="noopener">소식 받기</a>
+    <small>질문 5개, 1분이면 끝나요.</small>
+  </section>
+
   <footer class="end">
     <div class="links">
       <a href="https://www.threads.com/@worldwideworkalot/post/DerOIj6Et_z" target="_blank" rel="noopener">
@@ -184,8 +215,14 @@ footer.end { padding-block: 32px 56px; border-top: 1px solid var(--line); displa
       </a>
     </div>
     <p class="sign">와 주신 모든 분들, 반차까지 내고 함께 뛰어 준 동료들 덕분에 끝까지 올 수 있었습니다. 이강진 드림</p>
+    <p class="note">이 페이지는 방문 수를 세기 위해 구글 애널리틱스를 씁니다.</p>
   </footer>
 </main>
+<script>
+  document.getElementById('signup-link').addEventListener('click', function () {
+    if (window.gtag) gtag('event', 'signup_click', { link_url: this.href });
+  });
+</script>
 
 </body>
 </html>
